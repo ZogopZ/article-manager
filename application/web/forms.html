@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>Simple DB App</title>
+        <script>
+            function submitForm(form, method) {
+                var vals = [];
+                
+                for (var n=0; n < form.elements.length; n++) {
+                    if(form.elements[n].className === 'toSubmit') {
+                        vals.push(form.elements[n].name + "=" + form.elements[n].value);
+                    }
+                }
+                
+                window.parent.document.getElementById('resultsFrame').contentWindow.location = method + "?" + vals.join("&");
+            }
+        </script>
+    </head>
+    
+    <body>
+        <table width="100%" height="100%"  border='2'>
+            <tr>
+                
+
+                <td>
+                    <h2>Classify</h2>
+                    <form>                         
+                        Top N classes: <input type="text" class="toSubmit" name="topn" /><br />
+                        <input type="button" name="button" value="Search" onClick="submitForm(this.form, 'classify')" />
+                    </form>
+                </td>
+				
+				<td>
+                    <h2>FindSimilarArticles</h2>
+                    <form>                         
+                        Article Id: <input type="text" class="toSubmit" name="articleId" /><br />
+						N similar articles : <input type="text" class="toSubmit" name="n" /><br />
+                        <input type="button" name="button" value="Search" onClick="submitForm(this.form, 'findSimilarArticles')" />
+                    </form>
+                </td>
+				
+				
+            </tr>
+            <tr>
+			    <td>
+                    <h2>Update weight</h2>
+                    <form>
+						Class: <input type="text" class="toSubmit" name="class1" /><br />
+                        Subclass: <input type="text" class="toSubmit" name="subclass" /><br />
+                        Weight: <input type="text" class="toSubmit" name="weight" /><br />
+                        <input type="button" name="button" value="Search" onClick="submitForm(this.form, 'updateweight')" />
+                    </form>
+                </td>
+                <td>
+                    <h2>Top N Classes</h2>
+                    <form>
+                        From: <input type="text" class="toSubmit" name="fromdate" /><br />						
+                        To: <input type="text" class="toSubmit" name="todate" /><br />
+                        N: <input type="text" class="toSubmit" name="n" /><br />
+                        <input type="button" name="button" value="Search" onClick="submitForm(this.form, 'selectTopNClasses')" />
+                    </form>
+                </td>
+            </tr>
+			<tr>
+				<td>
+                    <h2>Count Articles</h2>
+                    <form>
+                        Class: <input type="text" class="toSubmit" name="class1" /><br />
+						Subclass: <input type="text" class="toSubmit" name="subclass" /><br />
+                        <input type="button" name="button" value="Search" onClick="submitForm(this.form, 'countArticles')" />
+                    </form>
+                </td>
+			</tr>
+        </table>
+    </body>
+</html>
